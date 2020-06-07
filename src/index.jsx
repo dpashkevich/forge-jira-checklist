@@ -36,6 +36,30 @@ const Task = ({text, isChecked, onCheck, onDelete}) => {
   )
 }
 
+const TaskList = ({tasks, onCheck, onDelete}) => {
+  if (!tasks.length) {
+    return null;
+  }
+
+  return (
+    <Table>
+      <Head>
+        <Cell><Text>**Tasks**</Text></Cell>
+        <Cell></Cell>
+        <Cell></Cell>
+      </Head>
+      {tasks.map((task, index) => (
+         <Task
+           text={task.text}
+           isChecked={task.isChecked}
+           onCheck={(isChecked) => onCheck(index, isChecked)}
+           onDelete={() => onDelete(index)}
+          />
+       ))}
+    </Table>
+  )
+}
+
 const App = () => {
   const initialState = [{
       text: 'Get milk',
@@ -86,22 +110,12 @@ const App = () => {
       <Form onSubmit={(formData) => createTask(formData.newTask)}>
         <TextField isRequired name="newTask" placeholder="Enter new task" />
       </Form>
-      <Table>
-        <Head>
-          <Cell><Text>**Tasks**</Text></Cell>
-          <Cell></Cell>
-          <Cell></Cell>
-        </Head>
-        {tasks.map((task, index) => (
-           <Task
-             text={task.text}
-             isChecked={task.isChecked}
-             onCheck={(isChecked) => checkTask(index, isChecked)}
-             onDelete={() => deleteTask(index)}
-            />
-         ))}
 
-      </Table>
+      <TaskList
+        tasks={tasks}
+        onCheck={checkTask}
+        onDelete={deleteTask}
+      />
     </Fragment>
   );
 };
