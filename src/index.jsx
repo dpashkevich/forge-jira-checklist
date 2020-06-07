@@ -67,10 +67,24 @@ const App = () => {
     updateTasks(tasks.filter((_, i) => i !== index));
   };
 
+  const createTask = (text) => {
+    text = text.trim();
+
+    if (!text) {
+      return;
+    }
+
+    updateTasks([
+      ...tasks,
+      {text}
+    ]);
+  }
+
+
   return (
     <Fragment>
-      <Form>
-        <TextField name="newTask" placeholder="Enter new task" />
+      <Form onSubmit={(formData) => createTask(formData.newTask)}>
+        <TextField isRequired name="newTask" placeholder="Enter new task" />
       </Form>
       <Table>
         <Head>
