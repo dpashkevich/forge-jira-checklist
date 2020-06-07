@@ -16,22 +16,57 @@ import ForgeUI, {
     TextField
 } from '@forge/ui';
 
-const Task = ({text, isDone}) => (
-  <Row>
-    <Cell>
-      <Button text="☐" />
-    </Cell>
-    <Cell>
-      <Text>{text}</Text>
-    </Cell>
-    <Cell>
-      <Button text="✖" />
-    </Cell>
-  </Row>
-)
+const Task = ({text, isChecked, onCheck, onDelete}) => {
+  const formatText = (text) => {
+    return isChecked ? `~~${text}~~` : text;
+  }
 
+  return (
+    <Row>
+      <Cell>
+        <Button text={isChecked ? '✅' : '🔲'} onClick={() => onCheck(!isChecked)} />
+      </Cell>
+      <Cell>
+        <Text>{formatText(text)}</Text>
+      </Cell>
+      <Cell>
+        <Button text="✖" onClick={onDelete} />
+      </Cell>
+    </Row>
+  )
+}
 
 const App = () => {
+  const initialState = [{
+      text: 'Get milk',
+      isChecked: true
+    }, {
+      text: 'Write an app'
+    }, {
+      text: 'Win CodeGeist 2020'
+    }, {
+      text: 'Buy a private jet and retire in the Bahamas'
+  }];
+
+  const [tasks, updateTasks] = useState(initialState);
+
+  const checkTask = (index, isChecked) => {
+    updateTasks(tasks.map((task, i) => {
+      if (i === index) {
+        return {
+          ...task,
+          isChecked: isChecked
+        };
+      } else {
+        return task;
+      }
+    }));
+  };
+
+  const deleteTask = (index) => {
+    updateTasks(tasks.filter((_, i) => i !== index));
+  };
+
   return (
     <Fragment>
       <Form>
@@ -43,13 +78,13 @@ const App = () => {
           <Cell></Cell>
           <Cell></Cell>
         </Head>
-        {[
-          'Get milk',
-          'Write an app',
-          'Win CodeGeist 2020',
-          'Buy a private jet and retire on the Bahamas'
-         ].map((text) => (
-           <Task text={text} />
+        {tasks.map((task, index) => (
+           <Task
+             text={task.text}
+             isChecked={task.isChecked}
+             onCheck={(isChecked) => checkTask(index, isChecked)}
+             onDelete={() => deleteTask(index)}
+            />
          ))}
 
       </Table>
