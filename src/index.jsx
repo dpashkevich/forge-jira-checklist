@@ -16,7 +16,7 @@ const ISSUE_PROPERTY_PREFIX = 'jira-checklist-';
 const App = () => {
   const [tasks, updateTasks] = useIssueProperty(ISSUE_PROPERTY_PREFIX + 'tasks', []);
 
-  const checkTask = async (id, isChecked) => {
+  const updateTask = async (id, isChecked) => {
     await updateTasks(tasks => tasks.map((task) => {
       if (task.id === id) {
         return {
@@ -55,7 +55,7 @@ const App = () => {
 
       <TaskList
         tasks={tasks}
-        onCheck={checkTask}
+        onUpdate={updateTask}
         onDelete={deleteTask}
       />
     </Fragment>

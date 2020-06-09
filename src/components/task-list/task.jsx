@@ -5,7 +5,7 @@ import ForgeUI, {
   Cell
 } from '@forge/ui';
 
-export const Task = ({text, isChecked, onCheck, onDelete}) => {
+export const Task = ({text, isChecked, onUpdate, onDelete}) => {
   const formatText = (text) => {
     return isChecked ? `~~${text}~~` : text;
   }
@@ -13,7 +13,7 @@ export const Task = ({text, isChecked, onCheck, onDelete}) => {
   return (
     <Row>
       <Cell>
-        <Button text={isChecked ? '✅' : '🔲'} onClick={() => onCheck(!isChecked)} />
+        <Button text={isChecked ? '✅' : '🔲'} onClick={() => onUpdate(!isChecked)} />
       </Cell>
       <Cell>
         <Text>{formatText(text)}</Text>

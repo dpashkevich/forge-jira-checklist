@@ -7,7 +7,7 @@ import ForgeUI, {
 
 import {Task} from './task';
 
-export const TaskList = ({tasks, onCheck, onDelete}) => {
+export const TaskList = ({tasks, onUpdate, onDelete}) => {
   if (!tasks.length) {
     return null;
   }
@@ -23,7 +23,7 @@ export const TaskList = ({tasks, onCheck, onDelete}) => {
          <Task
            text={task.text}
            isChecked={task.isChecked}
-           onCheck={(isChecked) => onCheck(task.id, isChecked)}
+           onUpdate={(isChecked) => onUpdate(task.id, isChecked)}
            onDelete={() => onDelete(task.id)}
           />
        ))}
