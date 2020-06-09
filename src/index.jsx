@@ -1,28 +1,20 @@
 import ForgeUI, {
   render,
   Fragment,
-  IssuePanel,
-  useState
+  IssuePanel
 } from '@forge/ui';
+
+import { useIssueProperty } from '@forge/ui-jira';
 
 import {TaskList, NewTaskForm} from './components';
 
+const ISSUE_PROPERTY_PREFIX = 'jira-checklist-';
+
 const App = () => {
-  const initialState = [{
-      text: 'Get milk',
-      isChecked: true
-    }, {
-      text: 'Write an app'
-    }, {
-      text: 'Win CodeGeist 2020'
-    }, {
-      text: 'Buy a private jet and retire in the Bahamas'
-  }];
+  const [tasks, updateTasks] = useIssueProperty(ISSUE_PROPERTY_PREFIX + 'tasks', []);
 
-  const [tasks, updateTasks] = useState(initialState);
-
-  const checkTask = (index, isChecked) => {
-    updateTasks(tasks.map((task, i) => {
+  const checkTask = async (index, isChecked) => {
+    await updateTasks(tasks.map((task, i) => {
       if (i === index) {
         return {
           ...task,
@@ -34,27 +26,26 @@ const App = () => {
     }));
   };
 
-  const deleteTask = (index) => {
-    updateTasks(tasks.filter((_, i) => i !== index));
+  const deleteTask = async (index) => {
+    await updateTasks(tasks.filter((_, i) => i !== index));
   };
 
-  const createTask = (text) => {
+  const createTask = async (text) => {
     text = text.trim();
 
     if (!text) {
       return;
     }
 
-    updateTasks([
+    await updateTasks([
       ...tasks,
       {text}
     ]);
   }
 
-
   return (
     <Fragment>
-      <NewTaskForm onCreate={(value) => createTask(value)} />
+      <NewTaskForm onCreate={async (value) => await createTask(value)} />
 
       <TaskList
         tasks={tasks}
