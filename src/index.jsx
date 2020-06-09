@@ -5,17 +5,20 @@ import ForgeUI, {
 } from '@forge/ui';
 
 import { useIssueProperty } from '@forge/ui-jira';
+import shortid from 'shortid'
 
 import {TaskList, NewTaskForm} from './components';
+
+
 
 const ISSUE_PROPERTY_PREFIX = 'jira-checklist-';
 
 const App = () => {
   const [tasks, updateTasks] = useIssueProperty(ISSUE_PROPERTY_PREFIX + 'tasks', []);
 
-  const checkTask = async (index, isChecked) => {
-    await updateTasks(tasks.map((task, i) => {
-      if (i === index) {
+  const checkTask = async (id, isChecked) => {
+    await updateTasks(tasks.map((task) => {
+      if (task.id === id) {
         return {
           ...task,
           isChecked: isChecked
@@ -26,8 +29,8 @@ const App = () => {
     }));
   };
 
-  const deleteTask = async (index) => {
-    await updateTasks(tasks.filter((_, i) => i !== index));
+  const deleteTask = async (id) => {
+    await updateTasks(tasks.filter((task) => task.id !== id));
   };
 
   const createTask = async (text) => {
@@ -39,7 +42,10 @@ const App = () => {
 
     await updateTasks([
       ...tasks,
-      {text}
+      {
+        id: shortid.generate(),
+        text
+      }
     ]);
   }
 

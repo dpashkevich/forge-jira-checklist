@@ -19,12 +19,12 @@ export const TaskList = ({tasks, onCheck, onDelete}) => {
         <Cell></Cell>
         <Cell></Cell>
       </Head>
-      {tasks.map((task, index) => (
+      {tasks.map((task) => (
          <Task
            text={task.text}
            isChecked={task.isChecked}
-           onCheck={(isChecked) => onCheck(index, isChecked)}
-           onDelete={() => onDelete(index)}
+           onCheck={(isChecked) => onCheck(task.id, isChecked)}
+           onDelete={() => onDelete(task.id)}
           />
        ))}
     </Table>
