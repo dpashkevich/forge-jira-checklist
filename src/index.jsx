@@ -17,7 +17,7 @@ const App = () => {
   const [tasks, updateTasks] = useIssueProperty(ISSUE_PROPERTY_PREFIX + 'tasks', []);
 
   const checkTask = async (id, isChecked) => {
-    await updateTasks(tasks.map((task) => {
+    await updateTasks(tasks => tasks.map((task) => {
       if (task.id === id) {
         return {
           ...task,
@@ -30,7 +30,7 @@ const App = () => {
   };
 
   const deleteTask = async (id) => {
-    await updateTasks(tasks.filter((task) => task.id !== id));
+    await updateTasks(tasks => tasks.filter((task) => task.id !== id));
   };
 
   const createTask = async (text) => {
@@ -40,7 +40,7 @@ const App = () => {
       return;
     }
 
-    await updateTasks([
+    await updateTasks(tasks => [
       ...tasks,
       {
         id: shortid.generate(),
