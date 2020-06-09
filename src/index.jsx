@@ -51,7 +51,7 @@ const App = () => {
 
   return (
     <Fragment>
-      <NewTaskForm onCreate={async (value) => await createTask(value)} />
+      <NewTaskForm onCreate={createTask} />
 
       <TaskList
         tasks={tasks}
