@@ -4,17 +4,13 @@ import ForgeUI, {
   IssuePanel
 } from '@forge/ui';
 
-import { useIssueProperty } from '@forge/ui-jira';
 import shortid from 'shortid'
 
 import {TaskList, NewTaskForm} from './components';
-
-
-
-const ISSUE_PROPERTY_PREFIX = 'jira-checklist-';
+import {useTasks} from './hooks/use-tasks'
 
 const App = () => {
-  const [tasks, updateTasks] = useIssueProperty(ISSUE_PROPERTY_PREFIX + 'tasks', []);
+  const [tasks, updateTasks] = useTasks();
 
   const updateTask = async (id, isChecked) => {
     await updateTasks(tasks => tasks.map((task) => {
