@@ -41,7 +41,7 @@ The state of the list is stored as JSON in the [Issue Property](https://develope
 
 To support concurrency, the app:
 * Assigns unique ids on checklist items
-* Reloads the list before each modificatio
+* Reloads the list before each modification
 
 ### Project directory overview
 * `manifest.yml` - A Forge app manifest that defines two modules:
