@@ -35,7 +35,7 @@ forge tunnel
 
 ## Architecture
 
-The app implements a simple UI that contains a [Form](https://developer.atlassian.com/platform/forge/ui-components/form/) with a [TextField](https://developer.atlassian.com/platform/forge/ui-components/form/#textfield) for new item entry and a [Table](https://developer.atlassian.com/platform/forge/ui-components/table/) component to render the list (this is currently the only way to render buttons and text on one line).
+The app implements an [Issue Panel](https://developer.atlassian.com/platform/forge/manifest-reference/modules/#jira-issue-panel) with a simple UI that contains a [Form](https://developer.atlassian.com/platform/forge/ui-components/form/) with a [TextField](https://developer.atlassian.com/platform/forge/ui-components/form/#textfield) for new item entry and a [Table](https://developer.atlassian.com/platform/forge/ui-components/table/) component to render the list (this is currently the only way to render buttons and text on one line).
 
 The state of the list is stored as JSON in the [Issue Property](https://developer.atlassian.com/cloud/jira/platform/jira-entity-properties/) using the [useIssueProperty](https://developer.atlassian.com/platform/forge/ui-hooks-reference/#useissueproperty) hook.
 
