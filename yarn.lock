@@ -77,10 +77,10 @@
   dependencies:
     "@forge/api" "~0.0.5"
 
-"@forge/ui@^0.3.1":
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/@forge/ui/-/ui-0.3.3.tgz#697f790231b9151e2e35367d89c4c059b0ed4c3a"
-  integrity sha512-fq0lKo54AasaPRkowWlB6pon5olHEEmWgjr2e+G450oHQeNRAp2JXsefUuHKRJHjY9S6ebC3D+1umpPo6MvMtA==
+"@forge/ui@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@forge/ui/-/ui-0.4.2.tgz#20aa87f16e70a81b34d7a7aeaafd925c1697454e"
+  integrity sha512-VmV/OKq1MhI5/3XT8vIrdV1d6EmYrWXIsVLiMeV+m2lipY92yF9pP1QuBPLc4lBjv6Wx4WYfkyehAwIZD1wVsA==
   dependencies:
     "@atlaskit/adf-schema" "^4.4.0"
     "@atlaskit/editor-json-transformer" "^7.0.2"
