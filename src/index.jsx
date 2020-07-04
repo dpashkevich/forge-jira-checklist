@@ -30,12 +30,6 @@ const App = () => {
   };
 
   const createTask = async (text) => {
-    text = text.trim();
-
-    if (!text) {
-      return;
-    }
-
     await updateTasks(tasks => [
       ...tasks,
       {

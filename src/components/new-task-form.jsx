@@ -15,7 +15,13 @@ export const NewTaskForm = ({onCreate}) => {
   }
 
   const onSubmit = async (formData) => {
-    await onCreate(formData.newTask);
+    const text = formData.newTask.trim();
+
+    if (!text) {
+      return;
+    }
+
+    await onCreate(text);
     clearInput();
   }
 
