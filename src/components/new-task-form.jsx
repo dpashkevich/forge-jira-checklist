@@ -28,7 +28,13 @@ export const NewTaskForm = ({onCreate}) => {
 
   return (
     <Form onSubmit={onSubmit} submitButtonText="Add task">
-      <TextField isRequired name="newTask" placeholder="Enter new task" defaultValue={defaultValue} />
+      <TextField
+        isRequired
+        autoComplete="off"
+        name="newTask"
+        placeholder="Enter new task"
+        defaultValue={defaultValue}
+      />
     </Form>
   )
 }
