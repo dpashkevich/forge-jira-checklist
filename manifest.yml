@@ -4,6 +4,7 @@ modules:
       function: main
       title: Jira Checklist
       description: A simple checklist for Jira
+      icon: https://raw.githubusercontent.com/dpashkevich/forge-jira-checklist/master/src/images/checkbox.svg
   function:
     - key: main
       handler: index.run
