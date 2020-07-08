@@ -11,3 +11,7 @@ modules:
 app:
   id: 'ari:cloud:ecosystem::app/b0f49e2d-3bc1-4ab1-86f5-f667be9c5157'
   name: Simple Checklists for Jira
+permissions:
+  scopes:
+    - 'read:jira-work'
+    - 'write:jira-work'
